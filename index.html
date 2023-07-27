@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Notes app</title>
+
+  <!-- HTML -->
+
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-size: 15pt;
+      margin: 0;
+      background-image: linear-gradient(280deg, #F200FF, #A100FF);
+    }
+
+    .container {
+      background-image: linear-gradient(280deg, #F200FF, #A100FF);
+      width: 100%;
+      min-height: 100vh;
+      max-height: 10000vh;
+
+      position: absolute;
+    }
+
+    .container h2 {
+      font-size: 11vw;
+      color: white;
+      margin: 50px 20px;
+
+    }
+
+    .container button {
+      font-size: 5vw;
+      margin: 30px 20px;
+      border: 0;
+      outline: none;
+      background: linear-gradient(280deg, #FF7700, #FFB700);
+      padding: 5px 15px;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+
+    }
+
+    p {
+      width: 70%;
+      height: 30vw;
+      background-color: white;
+      border-radius: 10px;
+      margin: 20px 20px;
+      padding: 10px 10px;
+      border: none;
+      outline: none;
+      font-size: 5vw;
+      position: absolute;
+
+    }
+
+    img {
+      width: 20vw;
+      height: 20vw;
+      margin: 23vw 5px 5px 60vw;
+      position: relative;
+      cursor: pointer;
+
+    }
+
+    body {
+      width: 100%;
+      height: 97vh;
+      font-size: 15pt;
+      background: linear-gradient(280deg, #001EFF, #000C64);
+      font-family: sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .toastcontainer {
+      margin: 5vw 3vw;
+    }
+
+    .toastcontainer button {
+      margin: 0 6px;
+      padding: 3px 12px;
+      font-size: 20px;
+      color: white;
+      background: black;
+      border: 0;
+      outline: 0;
+      border-radius: 3px;
+    }
+
+    .toastcontainer1 {
+      display: flex;
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      align-items: flex-end;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .toast {
+      background-color: white;
+      width: 50vw;
+      height: 18vw;
+      display: flex;
+      position: relative;
+      align-items: center;
+      border-radius: 2px;
+      box-shadow: 0 0 0 20px rbg(0, 0, 0, 0.3);
+      padding: 0 20px;
+      margin: 10px 0;
+      transform: translateX(100%);
+      animation: movel 0.5s linear forwards;
+    }
+
+    @keyframes movel {
+      100% {
+        transform: translateX(0)
+      }
+    }
+
+    .toast::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: green;
+
+      animation: anim linear 4.8s forwards;
+    }
+
+    @keyframes anim {
+      100% {
+        width: 0;
+      }
+    }
+
+    .toast.error::after {
+      background-color: red;
+    }
+
+    .toast.invalid::after {
+      background-color: orange;
+    }
+
+    .toast span {
+      margin-right: 15px;
+      color: white;
+      background-color: green;
+      padding: 1px 6px;
+      border-radius: 50%;
+    }
+
+    .toast.error span {
+      margin-right: 15px;
+      color: white;
+      background-color: red;
+      padding: 2px 7px;
+      border-radius: 50%;
+    }
+
+    .toast.invalid span {
+      font-weight: 500;
+      margin-right: 15px;
+      color: white;
+      background-color: orange;
+      font-size: 23px;
+      padding: 1px 11px;
+      border-radius: 50%;
+    }
+
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: grey;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(red, orange);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>Notes App</h2>
+    <button onclick="getToast('<span>✓</span>Created'),create()">Create Note</button>
+    <div name="c" id="c">
+
+    </div>
+
+    <div class="toastcontainer1">
+
+
+    </div>
+
+
+
+  </div>
+
+  <!-- Project -->
+  <script>
+    console.log('Hello World!');
+    let toastBox = document.getElementsByClassName('toastcontainer1')[0]
+
+    function getToast(msg) {
+      let toast = document.createElement('div');
+      toast.classList.add('toast')
+      toast.innerHTML = msg;
+      toastBox.appendChild(toast)
+      if (toast.innerHTML.includes('Deleted')) {
+        toast.classList.add('error')
+      }
+      else if (toast.innerHTML.includes('Invalid')) {
+        toast.classList.add('invalid')
+      }
+      setTimeout(() => {
+        toast.remove()
+      }, 5000)
+    }
+
+    console.log('Hello World!');
+    let p1 = document.getElementsByTagName('div')[1]
+    document.addEventListener('keyup', () => {
+      localStorage.setItem('notes', c.innerHTML)
+    })
+    let p = document.createElement('p')
+    let con = document.getElementsByClassName('container')[0]
+    let img = document.createElement('img')
+
+
+    let p2 = document.getElementsByTagName('p')
+
+    function create() {
+
+      let p = document.createElement('p')
+      let con = document.getElementsByClassName('container')[0]
+      let img = document.createElement('img')
+
+      let con1 = document.createElement('div')
+
+      let con2 = document.createElement('div')
+      img.setAttribute('src', 'https://technomastergs.000webhostapp.com/wp-content/uploads/2023/06/Picsart_23-06-26_16-20-29-165.png')
+      p.setAttribute('contenteditable', 'true')
+
+      let c = document.getElementById('c')
+      con.appendChild(con1).appendChild(con2).appendChild(p)
+
+      con1.appendChild(img)
+      c.appendChild(con1)
+
+
+      let p1 = document.getElementsByTagName('div')[1]
+
+
+      document.addEventListener('keyup', () => {
+        localStorage.setItem('notes', c.innerHTML)
+      })
+
+
+    }
+
+    function updated() {
+      let p1 = document.getElementsByTagName('div')[1]
+      document.addEventListener('click', () => {
+        localStorage.setItem('notes', c.innerHTML)
+      })
+    }
+
+
+
+    let con1 = document.getElementsByClassName('container')[0]
+    let body = document.body
+    con1.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        getToast('<span>X</span>Deleted')
+
+        let ee = e.target.parentElement.firstElementChild.remove()
+        console.log('hhh')
+        e.target.remove()
+
+
+        updated()
+      }
+      updated()
+    })
+    let c = document.getElementsByName('c')[0]
+
+    function getd() {
+
+      let ll = localStorage.getItem('notes')
+      c.innerHTML = ll
+
+    }
+
+
+    getd()
+  </script>
+</body>
+
+</html>
